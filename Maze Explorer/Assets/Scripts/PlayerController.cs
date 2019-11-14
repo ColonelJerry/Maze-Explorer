@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 9f;
+    public float speed = 9;
     public float verticalInput;
     public float horizontalInput;
     public int health;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         health = 3;
-        UpdateHealth(0);
+        healthText.text = "Health: " + health;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Game Over!");
+            gameOverText.text = "Game Over!";
             Destroy(gameObject);
         }
     }
