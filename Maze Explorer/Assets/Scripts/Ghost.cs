@@ -8,10 +8,11 @@ public class Ghost : MonoBehaviour
     public int Speed = 4;
     public int MaxDist = 10;
     public int MinDist = 1;
+    private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -25,6 +26,19 @@ public class Ghost : MonoBehaviour
         if (Vector3.Distance(transform.position, Player.position) <= MaxDist) 
         {
             //
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (playerController.health > 1)
+        {
+            playerController.UpdateHealth(-1);
+            transform.position = new Vector3(25, 1, 0);
+        }
+        else
+            {
+            playerController.UpdateHealth(-1);
         }
     }
 }
