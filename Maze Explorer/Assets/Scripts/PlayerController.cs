@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 30f;
+    public float speed = 9f;
     public float verticalInput;
     public float horizontalInput;
+    public int health;
+    public TextMeshProUGUI healthText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 3;
+        UpdateHealth(0);
     }
 
     // Update is called once per frame
@@ -21,5 +25,17 @@ public class PlayerController : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * horizontalInput * Time.deltaTime * speed;
+
+        if (health <= 0)
+        {
+            Debug.Log("Game Over!");
+            Destroy(gameObject);
+        }
+    }
+
+    public void UpdateHealth(int healthToAdd)
+    {
+        health += healthToAdd;
+        healthText.text = "Health: " + health;
     }
 }
