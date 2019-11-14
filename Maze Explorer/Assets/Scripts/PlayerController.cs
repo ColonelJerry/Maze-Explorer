@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public int health;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI gameOverText;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Game Over!");
+            gameOverText.text = "Game Over!";
             Destroy(gameObject);
         }
     }
