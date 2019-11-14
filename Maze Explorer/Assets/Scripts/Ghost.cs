@@ -8,8 +8,11 @@ public class Ghost : MonoBehaviour
     public float Speed = 1;
     public int MinDist = 1;
     private PlayerController playerController;
+<<<<<<< HEAD
     public float elapsedTime;
 
+=======
+>>>>>>> master
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,19 @@ public class Ghost : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         elapsedTime = 0.0f;
+        if (playerController.health > 1)
+        {
+            playerController.UpdateHealth(-1);
+            transform.position = new Vector3(25, 1, 0);
+        }
+        else
+            {
+            playerController.UpdateHealth(-1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (playerController.health > 1)
         {
             playerController.UpdateHealth(-1);
