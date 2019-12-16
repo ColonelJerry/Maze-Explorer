@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public int health;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
+    public bool gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             gameOverText.text = "Game Over!";
             Destroy(gameObject);
+            gameOver = true;
         }
     }
 

@@ -7,6 +7,7 @@ public class Clock : MonoBehaviour
 {
     public TextMeshProUGUI clockText;
     private float startTime;
+
     // Start is called before the first frame update
     void Start()
     {
