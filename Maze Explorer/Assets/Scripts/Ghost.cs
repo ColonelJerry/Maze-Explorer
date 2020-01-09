@@ -5,28 +5,27 @@ using UnityEngine;
 public class Ghost : MonoBehaviour
 {
     public Transform Player;
-    public float Speed = 1.5f;
+    public float Speed = 2f;
     public int MinDist = 1;
     private PlayerController playerController;
-    //private float genTime;
-    //private float clock;
-    // Start is called before the first frame update
+    private float speedTime;
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        //genTime = clock;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       if (Time.time >= 10)
+        speedTime += Time.deltaTime;
+       if (speedTime >= 90)
         {
-            Speed = 6f;
+            Speed = 8f;
         }
-       else if (Time.time >= 5)
+       else if (speedTime >= 45)
         {
-            Speed = 3f;
+            Speed = 4f;
         }
 
         if (Vector3.Distance(transform.position, Player.position) >= MinDist)
@@ -35,7 +34,7 @@ public class Ghost : MonoBehaviour
         }
 
         transform.LookAt(Player);
-        //clock = Time.deltaTime;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +43,6 @@ public class Ghost : MonoBehaviour
         {
             playerController.UpdateHealth(-1);
             transform.position = new Vector3(25, 1, 0);
-            //genTime = clock - clock;
         }
         else
         {

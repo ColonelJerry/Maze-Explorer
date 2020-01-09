@@ -7,6 +7,7 @@ public class Clock : MonoBehaviour
 {
     public TextMeshProUGUI clockText;
     private float startTime;
+    private bool finnished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +18,19 @@ public class Clock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float t = Time.time - startTime;
+        if (finnished)
+            return;
+
+        float t = startTime += Time.deltaTime;
 
         string minutes = ((int)t / 60).ToString();
         string seconds = (t % 60).ToString("f0");
 
         clockText.text = "Time: " + minutes + "Min " + seconds + "Sec";
+    }
+
+    public void Finnish()
+    {
+        finnished = true;
     }
 }

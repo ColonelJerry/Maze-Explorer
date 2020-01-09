@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
     public bool gameOver;
+    public GameObject player;
+    public GameObject gameOverMenu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("escape"))
+        {
+            Debug.Log("QUIT!");
+            Application.Quit();
+        }
         verticalInput = Input.GetAxis("Vertical");
         transform.position += Vector3.forward * verticalInput * Time.deltaTime * speed;
 
@@ -31,9 +39,10 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            gameOverText.text = "Game Over!";
-            Destroy(gameObject);
+            player.gameObject.SetActive(false);
+            gameOverMenu.gameObject.SetActive(true);
             gameOver = true;
+            Debug.Log("GameOver!");
         }
     }
 
