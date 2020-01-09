@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ghost : MonoBehaviour
 {
     public Transform Player;
-    public float Speed = 2f;
+    public float Speed = 3f;
     public int MinDist = 1;
     private PlayerController playerController;
     private float speedTime;
@@ -21,11 +21,11 @@ public class Ghost : MonoBehaviour
         speedTime += Time.deltaTime;
        if (speedTime >= 90)
         {
-            Speed = 8f;
+            Speed = 12f;
         }
        else if (speedTime >= 45)
         {
-            Speed = 4f;
+            Speed = 6f;
         }
 
         if (Vector3.Distance(transform.position, Player.position) >= MinDist)
